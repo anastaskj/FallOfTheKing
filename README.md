@@ -1,5 +1,5 @@
 # Fall Of The King
-A unique take on the clicker game genre.
+A clicker game with a twist.
 ## Documents
 [Design Document V0.1](https://docs.google.com/document/d/1UmDVAiibRLu1fPXms5iekuamPIv-bxaY4udhaSu6rsA/edit?usp=sharing)
 
