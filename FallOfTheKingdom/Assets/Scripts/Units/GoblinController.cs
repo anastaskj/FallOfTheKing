@@ -15,6 +15,10 @@ public class GoblinController : UnitController
         return goblinRes.GoldGatherValue * gatherMultiplier;
     }
 
-   
+    //resource link
+    public override UnitResources GetResources()
+    {
+        return goblinRes;
+    }
 
 }

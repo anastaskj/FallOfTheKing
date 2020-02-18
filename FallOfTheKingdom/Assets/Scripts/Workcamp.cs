@@ -8,13 +8,14 @@ public class Workcamp : MonoBehaviour
     [SerializeField] float startGainTimer;
     float gainTimer;
     List<GoblinController> goblinWorkforce;
-
+    List<AppeaserController> appeaserWorkforce;
     public float CampGold { get { return CampGold; } }
 
 
     private void Awake()
     {
-        goblinWorkforce = new List<GoblinController>();
+        goblinWorkforce = new List<GoblinController>(); //change to save and load system
+        appeaserWorkforce = new List<AppeaserController>();
     }
 
     private void Update()
@@ -30,9 +31,17 @@ public class Workcamp : MonoBehaviour
         }
     }
 
-    public void AddGoblinToWorkcamp(GoblinController goblin)
+    public void AddUnitToWorkcamp(UnitController unit)
     {
-        goblinWorkforce.Add(goblin);
+        if (unit is GoblinController)
+        {
+            goblinWorkforce.Add((GoblinController)unit);
+        }
+        else if(unit is AppeaserController)
+        {
+            appeaserWorkforce.Add((AppeaserController)unit);
+        }
+        
     }
 
     void GainGoldFromGoblins()
@@ -41,7 +50,33 @@ public class Workcamp : MonoBehaviour
         {
             goblin.GatherGold();
         }
+        Debug.Log("GOLD GAINED");
     }
 
+    public int GetNumberOfGoblinsByType(GoblinTypes type)
+    {
+        int count = 0;
+        foreach (GoblinController goblin in goblinWorkforce)
+        {
+            if (((GoblinResources)goblin.GetResources()).Type == type)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int GetNumberOfAppeasersByType(AppeaserTypes type)
+    {
+        int count = 0;
+        foreach (AppeaserController appeaser in appeaserWorkforce)
+        {
+            if (((AppeaserResources)appeaser.GetResources()).Type == type)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
 
 }

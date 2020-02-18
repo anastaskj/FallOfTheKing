@@ -6,6 +6,7 @@ public class UnitController : MonoBehaviour
 {
     UnitResources unitRes;
 
+
     public bool CanHire(float priceComparison)
     {
         if (unitRes.Cost > priceComparison)
@@ -16,5 +17,10 @@ public class UnitController : MonoBehaviour
         {
             return true;
         }
+    }
+
+    public virtual UnitResources GetResources()
+    {
+        return unitRes;
     }
 }
