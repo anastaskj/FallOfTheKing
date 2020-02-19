@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UnitController : MonoBehaviour
 {
+    [SerializeField]
     UnitResources unitRes;
 
 

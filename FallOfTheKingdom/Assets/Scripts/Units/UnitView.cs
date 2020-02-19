@@ -8,5 +8,9 @@ public class UnitView : MonoBehaviour
     UnitResources unitRes;
     //prefab for ingame UI
 
-    
+    public virtual void InteractionAnimation()
+    {
+        anim.SetTrigger("Interaction");
+        Debug.Log("Interaction");
+    }
 }

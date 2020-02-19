@@ -5,11 +5,12 @@ using UnityEngine;
 public class GoblinController : UnitController
 {
     [SerializeField] GoblinResources goblinRes;
-    float gatherMultiplier;
+    [SerializeField] GoblinView goblinView;
+    [SerializeField] float gatherMultiplier;
     //linked appeaser
 
 
-   //gather gold
+    //gather gold
     public float GatherGold()
     {
         return goblinRes.GoldGatherValue * gatherMultiplier;
@@ -21,4 +22,8 @@ public class GoblinController : UnitController
         return goblinRes;
     }
 
+    public void OnInteraction()
+    {
+        goblinView.InteractionAnimation();
+    }
 }

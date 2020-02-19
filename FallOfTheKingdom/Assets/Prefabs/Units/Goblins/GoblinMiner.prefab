@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5134969964721116614}
   m_Layer: 0
   m_Name: GoblinMiner
-  m_TagString: Untagged
+  m_TagString: Goblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -258828609
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 8749302817991680212, guid: 5ea769685b4dca742805c49b81184c95,
     type: 3}
@@ -121,7 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d5b4602da00ce42a7ac1e394871166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitRes: {fileID: 8033045231973189248}
   goblinRes: {fileID: 8033045231973189248}
+  goblinView: {fileID: 7550322386625261076}
+  gatherMultiplier: 1
 --- !u!114 &7550322386625261076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +148,7 @@ Animator:
   m_GameObject: {fileID: 2665340835701600752}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f10931ed0772ad04286ab742b771c1de, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

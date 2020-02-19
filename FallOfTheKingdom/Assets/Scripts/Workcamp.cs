@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Workcamp : MonoBehaviour
 {
@@ -9,18 +10,21 @@ public class Workcamp : MonoBehaviour
     float gainTimer;
     List<GoblinController> goblinWorkforce;
     List<AppeaserController> appeaserWorkforce;
-    public float CampGold { get { return CampGold; } }
 
+    public float CampGold { get { return campGold; } }
+    public UnityEvent OnGoldChanged = new UnityEvent();
 
+    
     private void Awake()
     {
-        goblinWorkforce = new List<GoblinController>(); //change to save and load system
+        //change to save and load system
+        goblinWorkforce = new List<GoblinController>(); 
         appeaserWorkforce = new List<AppeaserController>();
     }
 
     private void Update()
     {
-        if (true) //change to some shit
+        if (goblinWorkforce.Count > 0)
         {
             gainTimer -= Time.deltaTime;
             if (gainTimer <= 0) //trigger
@@ -41,6 +45,9 @@ public class Workcamp : MonoBehaviour
         {
             appeaserWorkforce.Add((AppeaserController)unit);
         }
+        campGold -= unit.GetResources().Cost;
+
+        //invoke event
         
     }
 
@@ -48,9 +55,17 @@ public class Workcamp : MonoBehaviour
     {
         foreach (GoblinController goblin in goblinWorkforce)
         {
-            goblin.GatherGold();
+            campGold += goblin.GatherGold();
         }
-        Debug.Log("GOLD GAINED");
+
+        //check if gold is enough to hire units, update ui
+        OnGoldChanged.Invoke();
+    }
+
+    public void GainGoldFromPlayer(float amount)
+    {
+        campGold += amount;
+        OnGoldChanged.Invoke();
     }
 
     public int GetNumberOfGoblinsByType(GoblinTypes type)
@@ -78,5 +93,7 @@ public class Workcamp : MonoBehaviour
         }
         return count;
     }
+
+
 
 }

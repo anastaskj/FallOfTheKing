@@ -8,9 +8,11 @@ A clicker game with a twist.
 
 - [X] Add appeaser models
 - [X] Add appeaser spawning code
-- [ ] Add general UI, with resource scripts
-- [ ] Add click gold gain
-- [ ] Add working hiring (UI and ingame)
+- [X] Add general UI, with resource scripts
+- [X] Add click gold gain
+- [X] Add working goblin hiring (UI and ingame)
+
+- [ ] Spawn goblins with a workplace around them in a random spot on the map
 
 - [ ] Add appeaser bench
 - [ ] Add appeaser assigning

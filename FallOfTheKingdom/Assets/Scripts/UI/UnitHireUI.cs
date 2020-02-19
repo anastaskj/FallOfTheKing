@@ -9,9 +9,11 @@ public class UnitHireUI : MonoBehaviour
     [SerializeField] Text unitCost;
     [SerializeField] Text unitName;
     [SerializeField] Text unitAmount;
+    [SerializeField] Button button;
 
     public UnitHireMenu menu;
 
+    UnitResources unit;
     GoblinTypes goblinType;
     AppeaserTypes appeaserType;
 
@@ -20,21 +22,41 @@ public class UnitHireUI : MonoBehaviour
         unitImage.sprite = u.UnitSprite;
         unitCost.text = u.Cost.ToString() + " GOLD";
         unitName.text = u.UnitName;
+        unit = u;
+
         if (u is GoblinResources)
         {
-            Debug.Log("Hire");
             goblinType = ((GoblinResources)u).Type;
         }
         else if(u is AppeaserResources)
         {
             appeaserType = ((AppeaserResources)u).Type;
         }
-        unitAmount.text = menu.hirer.GetUnitNumber(u).ToString();
+        //ChangeInteractable(u);
+
+        UpdateUnitAmount(unit);
+        //menu.hirer.OnUnitHired.AddListener(delegate { UpdateUnitAmount(unit); });
+    }
+
+    public void UpdateUnitAmount(UnitResources unit)
+    {
+        unitAmount.text = menu.hirer.GetUnitNumber(unit).ToString();
+    }
+
+    public void ChangeInteractable(UnitResources u)
+    {
+        if (menu.hirer.GetCampGold() >= u.Cost)
+        {
+            button.interactable = false;
+        }
+        else
+        {
+            button.interactable = true;
+        }
     }
 
     public void HireUnit()
     {
-        Debug.Log(goblinType);
         if (goblinType != GoblinTypes.None)
         {
             menu.hirer.HireGoblin((int)goblinType);
@@ -43,6 +65,7 @@ public class UnitHireUI : MonoBehaviour
         {
             menu.hirer.HireAppeaser((int)appeaserType);
         }
+        UpdateUnitAmount(unit);
     }
 
     //update unit amount

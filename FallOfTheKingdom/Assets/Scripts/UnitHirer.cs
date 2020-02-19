@@ -9,8 +9,10 @@ public class UnitHirer : MonoBehaviour
     [SerializeField] AppeaserController[] appeaserPrefabs;
     [SerializeField] Workcamp workCamp;
 
-    [SerializeField] GameObject workstation; //temp
+    [SerializeField] GameObject[] workstations; //temp
+    
 
+    //public UnityEvent OnUnitHired = new UnityEvent();
     public GoblinController[] GoblinPrefabs { get { return goblinPrefabs; } }
     public AppeaserController[] AppeaserPrefabs { get { return appeaserPrefabs; } }
 
@@ -19,9 +21,30 @@ public class UnitHirer : MonoBehaviour
         GoblinController goblin = goblinPrefabs[index-1]; //-1 because None is the first possibility
         if (goblin.CanHire(workCamp.CampGold)) //if you have enough money to hire a goblin
         {
-            Debug.Log("Hire2");
             workCamp.AddUnitToWorkcamp(goblin);
-            Instantiate(goblin.gameObject, workstation.transform);
+
+            Transform yeahtemp = null;
+            switch (((GoblinResources)goblin.GetResources()).Type)
+            {
+                case GoblinTypes.None:
+                    break;
+                case GoblinTypes.Miner:
+                    yeahtemp = workstations[0].transform;
+                    break;
+                case GoblinTypes.Builder:
+                    yeahtemp = workstations[1].transform;
+                    break;
+                case GoblinTypes.Meathead:
+                    yeahtemp = workstations[2].transform;
+                    break;
+                default:
+                    break;
+            }
+
+            Instantiate(goblin.gameObject, yeahtemp);
+            //Instantiate(goblin.gameObject, workstation.transform);
+
+            workCamp.OnGoldChanged.Invoke();
         }
         else
         {
@@ -31,9 +54,10 @@ public class UnitHirer : MonoBehaviour
     public void HireAppeaser(int index)
     {
         AppeaserController appeaser = appeaserPrefabs[index-1]; //-1 because None is the first possibility
-        if (appeaser.CanHire(workCamp.CampGold))
+        if (appeaser.CanHire(workCamp.CampGold))//if you have enough money to hire an appeaser
         {
             workCamp.AddUnitToWorkcamp(appeaser);
+            workCamp.OnGoldChanged.Invoke();
 
             //add to bench
         }
@@ -45,13 +69,20 @@ public class UnitHirer : MonoBehaviour
 
     public int GetUnitNumber(UnitResources unit)
     {
+        int number;
         if (unit is GoblinResources)
         {
-            return workCamp.GetNumberOfGoblinsByType(((GoblinResources)unit).Type);
+            number = workCamp.GetNumberOfGoblinsByType(((GoblinResources)unit).Type);
         }
         else
         {
-            return workCamp.GetNumberOfAppeasersByType(((AppeaserResources)unit).Type);
+            number = workCamp.GetNumberOfAppeasersByType(((AppeaserResources)unit).Type);
         }
+        return number;
+    }
+
+    public float GetCampGold()
+    {
+        return workCamp.CampGold;
     }
 }

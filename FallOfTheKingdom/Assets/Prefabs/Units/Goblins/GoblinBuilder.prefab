@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1720814901441468414}
   m_Layer: 0
   m_Name: GoblinBuilder
-  m_TagString: Untagged
+  m_TagString: Goblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -258828609
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1500773420645876386, guid: 3413fe39ea2ddfe44add75044ec91bed,
     type: 3}
@@ -121,7 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d5b4602da00ce42a7ac1e394871166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitRes: {fileID: 8630058164937558147}
   goblinRes: {fileID: 8630058164937558147}
+  goblinView: {fileID: -7340573339131790720}
+  gatherMultiplier: 1
 --- !u!114 &-7340573339131790720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +148,7 @@ Animator:
   m_GameObject: {fileID: 4342047700350304243}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 09cd15327b0153a4a9c477f9efad053b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

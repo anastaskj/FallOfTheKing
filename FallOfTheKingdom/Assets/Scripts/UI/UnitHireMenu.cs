@@ -41,7 +41,6 @@ public class UnitHireMenu : MonoBehaviour
             item.menu = this;
             item.transform.SetParent(listContent, false);
             item.SetUI(hirer.AppeaserPrefabs[i].GetResources());
-
         }
     }
 

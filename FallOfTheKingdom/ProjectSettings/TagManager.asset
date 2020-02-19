@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Goblin
+  - Appeaser
   layers:
   - Default
   - TransparentFX
@@ -40,4 +42,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: WorkstationLayer
+    uniqueID: 2051073999
+    locked: 0
+  - name: WorkerLayer
+    uniqueID: 4036138687
     locked: 0
