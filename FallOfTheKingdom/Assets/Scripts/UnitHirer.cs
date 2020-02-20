@@ -7,12 +7,11 @@ public class UnitHirer : MonoBehaviour
 {
     [SerializeField] GoblinController[] goblinPrefabs;
     [SerializeField] AppeaserController[] appeaserPrefabs;
-    [SerializeField] Workcamp workCamp;
 
     [SerializeField] GameObject[] workstations; //temp
-    
 
-    //public UnityEvent OnUnitHired = new UnityEvent();
+    [SerializeField] public Workcamp workCamp;
+
     public GoblinController[] GoblinPrefabs { get { return goblinPrefabs; } }
     public AppeaserController[] AppeaserPrefabs { get { return appeaserPrefabs; } }
 

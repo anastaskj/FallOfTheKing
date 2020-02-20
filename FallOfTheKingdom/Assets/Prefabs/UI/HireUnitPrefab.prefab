@@ -387,6 +387,7 @@ MonoBehaviour:
   unitCost: {fileID: 5208921965796073772}
   unitName: {fileID: 5208921967641475607}
   unitAmount: {fileID: 4579572148029765984}
+  button: {fileID: 5208921966667731409}
   menu: {fileID: 0}
 --- !u!1 &5208921967441420582
 GameObject:

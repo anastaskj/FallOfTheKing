@@ -11,6 +11,7 @@ public class UnitView : MonoBehaviour
     public virtual void InteractionAnimation()
     {
         anim.SetTrigger("Interaction");
-        Debug.Log("Interaction");
     }
+
+    //to do: add animation triggers for riot, death
 }

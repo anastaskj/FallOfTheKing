@@ -12,37 +12,30 @@ public class UnitHireMenu : MonoBehaviour
     {
         FillListGoblins();
     }
+
     public void FillListGoblins()
     {
-        for (int i = 0; i < listContent.childCount; i++)
-        {
-            Destroy(listContent.GetChild(i).gameObject);
-        }
-
-        for (int i = 0; i < hirer.GoblinPrefabs.Length; i++)
-        {
-            UnitHireUI item = Instantiate(hireUIPrefab);
-            item.menu = this;
-            item.transform.SetParent(listContent, false);
-            item.SetUI(hirer.GoblinPrefabs[i].GetResources());
-        }
+        FillList(hirer.GoblinPrefabs);
     }
 
     public void FillListAppeasers()
     {
+        FillList(hirer.AppeaserPrefabs);
+    }
+
+    void FillList(UnitController[] units)
+    {
         for (int i = 0; i < listContent.childCount; i++)
         {
             Destroy(listContent.GetChild(i).gameObject);
         }
-
-        for (int i = 0; i < hirer.AppeaserPrefabs.Length; i++)
+        for (int i = 0; i < units.Length; i++)
         {
             UnitHireUI item = Instantiate(hireUIPrefab);
             item.menu = this;
             item.transform.SetParent(listContent, false);
-            item.SetUI(hirer.AppeaserPrefabs[i].GetResources());
+            item.SetUI(units[i].GetResources());
         }
     }
 
-    
 }

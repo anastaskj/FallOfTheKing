@@ -32,26 +32,27 @@ public class UnitHireUI : MonoBehaviour
         {
             appeaserType = ((AppeaserResources)u).Type;
         }
-        //ChangeInteractable(u);
 
-        UpdateUnitAmount(unit);
-        //menu.hirer.OnUnitHired.AddListener(delegate { UpdateUnitAmount(unit); });
+        ChangeInteractable();
+        UpdateUnitAmount();
+
+        menu.hirer.workCamp.OnUnitHired.AddListener(ChangeInteractable);
     }
 
-    public void UpdateUnitAmount(UnitResources unit)
+    public void UpdateUnitAmount()
     {
         unitAmount.text = menu.hirer.GetUnitNumber(unit).ToString();
     }
 
-    public void ChangeInteractable(UnitResources u)
+    public void ChangeInteractable()
     {
-        if (menu.hirer.GetCampGold() >= u.Cost)
+        if (menu.hirer.GetCampGold() >= unit.Cost)
         {
-            button.interactable = false;
+            button.interactable = true;
         }
         else
         {
-            button.interactable = true;
+            button.interactable = false;
         }
     }
 
@@ -65,8 +66,8 @@ public class UnitHireUI : MonoBehaviour
         {
             menu.hirer.HireAppeaser((int)appeaserType);
         }
-        UpdateUnitAmount(unit);
-    }
+        UpdateUnitAmount();
 
-    //update unit amount
+        menu.hirer.workCamp.OnUnitHired.Invoke();
+    }
 }

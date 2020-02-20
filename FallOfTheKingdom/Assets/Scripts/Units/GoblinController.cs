@@ -26,4 +26,9 @@ public class GoblinController : UnitController
     {
         goblinView.InteractionAnimation();
     }
+
+    void GainAnger(float value)
+    {
+        goblinRes.Anger += value;
+    }
 }

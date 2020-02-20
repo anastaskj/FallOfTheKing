@@ -13,8 +13,8 @@ public class Workcamp : MonoBehaviour
 
     public float CampGold { get { return campGold; } }
     public UnityEvent OnGoldChanged = new UnityEvent();
+    public UnityEvent OnUnitHired = new UnityEvent();
 
-    
     private void Awake()
     {
         //change to save and load system
@@ -48,25 +48,33 @@ public class Workcamp : MonoBehaviour
         campGold -= unit.GetResources().Cost;
 
         //invoke event
-        
     }
+
 
     void GainGoldFromGoblins()
     {
+        float amount = 0;
         foreach (GoblinController goblin in goblinWorkforce)
         {
-            campGold += goblin.GatherGold();
+            amount += goblin.GatherGold();
         }
 
-        //check if gold is enough to hire units, update ui
-        OnGoldChanged.Invoke();
+        GoldChange(amount);
     }
 
     public void GainGoldFromPlayer(float amount)
     {
+        GoldChange(amount);
+    }
+
+
+    void GoldChange(float amount)
+    {
         campGold += amount;
         OnGoldChanged.Invoke();
+        OnUnitHired.Invoke();
     }
+
 
     public int GetNumberOfGoblinsByType(GoblinTypes type)
     {
